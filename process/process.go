@@ -27,7 +27,7 @@ type Process interface {
 	// Wait waits for the Tor process to exit and returns error if it was not a
 	// successful exit. It is analagous to os/exec.Cmd.Wait.
 	Wait() error
-	// ControlConn is used for statically linked, embedded processes to create
+	// EmbeddedControlConn is used for statically linked, embedded processes to create
 	// a controller connection. For non-embedded processes or Tor versions that
 	// don't support embedded control connections, ErrControlConnUnsupported is
 	// returned. Note, this should only be called once per process before

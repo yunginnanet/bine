@@ -22,11 +22,11 @@ package embedded
 
 import (
 	"github.com/cretz/bine/process"
+	"github.com/cretz/bine/process/embedded/tor-0.4.7"
 )
 
 // NewCreator creates a process.Creator for statically-linked Tor embedded in
 // the binary.
 func NewCreator() process.Creator {
-	// return tor047.NewCreator()
-	return nil
+	return tor047.NewCreator()
 }

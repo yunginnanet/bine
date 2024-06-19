@@ -8,6 +8,9 @@ all : deps prepStaticTor
 prepStaticTor : .EXPORT
 	go run setup.go
 
+fixProcessGo :
+	go run setup.go -skip-compile
+
 deps :
 	go mod tidy -v
 

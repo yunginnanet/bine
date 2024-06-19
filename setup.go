@@ -2,16 +2,25 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"errors"
+	"flag"
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strconv"
 	"strings"
+	"time"
 
 	"github.com/go-git/go-git/v5"
 )
 
+var skipCompile = false
+
 func main() {
+	flag.BoolVar(&skipCompile, "skip-compile", false, "Skip compiling tor-static")
+	flag.Parse()
 	torStaticPath := os.Getenv("TOR_STATIC_PATH")
 	if torStaticPath == "" {
 		pwd, err := os.Getwd()
@@ -38,6 +47,9 @@ func main() {
 			if file.IsDir() && file.Name() == "tor-0.4.7" {
 				torStaticPath = filepath.Join(pwd, "tor-static")
 			}
+		}
+		if skipCompile {
+			goto fixProcess
 		}
 	clone:
 		if _, err = git.PlainClone(torStaticPath, false, &git.CloneOptions{
@@ -77,12 +89,22 @@ func main() {
 	/*	if err := embedded.Init(torStaticPath); err != nil {
 		panic(err)
 	}*/
-	oldF, err := os.OpenFile("process/embedded/process.go", os.O_CREATE|os.O_WRONLY, 0644)
+fixProcess:
+	oldFPath := "./process/embedded/process.go"
+	println("Fixing process.go at " + oldFPath)
+	oldData, err := os.ReadFile(oldFPath)
 	if err != nil {
 		panic(err)
 	}
-	newPath := filepath.Join(os.TempDir(), "process.go")
-	newF, err := os.OpenFile(newPath, os.O_CREATE|os.O_WRONLY, 0644)
+	oldF := bytes.NewReader(oldData)
+	newPath := filepath.Join(os.TempDir(), "bine"+strconv.Itoa(int(time.Now().Unix())), "process.go")
+	if err = os.MkdirAll(filepath.Dir(newPath), 0755); err != nil {
+		panic(err)
+	}
+	newF, err := os.Create(newPath)
+	if err != nil {
+		panic(err)
+	}
 	xerox := bufio.NewScanner(oldF)
 	doNext := false
 	inImports := false
@@ -91,35 +113,43 @@ func main() {
 			panic(xerox.Err())
 		}
 		if strings.Contains(xerox.Text(), "import (") {
+			// println("Found imports")
 			inImports = true
 		}
-		if inImports {
-			if strings.Contains(xerox.Text(), ")") {
-				inImports = false
-				if _, err = newF.WriteString(`"github.com/cretz/bine/process/embedded/tor047"\n)`); err != nil {
-					panic(err)
-				}
-				continue
+		if inImports && strings.Contains(xerox.Text(), ")") {
+			inImports = false
+			toWrite := `"github.com/cretz/bine/process/embedded/tor-0.4.7"
+			)`
+			// println("Writing(+): " + toWrite)
+			if _, err = newF.WriteString(toWrite); err != nil {
+				panic(err)
 			}
+			continue
 		}
+
 		needle := "NewCreator() process.Creator"
 		if strings.Contains(xerox.Text(), needle) {
 			doNext = true
+			// println("found NewCreator")
+			_, _ = newF.WriteString(xerox.Text() + "\n")
+			continue
 		}
 		if doNext {
-			if _, err = newF.WriteString(
-				strings.ReplaceAll(
-					xerox.Text(),
-					"return nil",
-					"return tor047.NewCreator()",
-				),
-			); err != nil {
+			toWrite := strings.ReplaceAll(
+				xerox.Text(),
+				"return nil",
+				"return tor047.NewCreator()",
+			)
+			// println("Writing(+): " + toWrite)
+			if _, err = newF.WriteString(toWrite + "\n"); err != nil {
 				panic(err)
 			}
 			doNext = false
 			continue
 		}
-		if _, err = newF.WriteString(xerox.Text() + "\n"); err != nil {
+		toWrite := xerox.Text() + "\n"
+		// println("Writing: " + toWrite)
+		if _, err = newF.WriteString(toWrite); err != nil {
 			panic(err)
 		}
 	}
@@ -130,12 +160,30 @@ func main() {
 		panic(err)
 	}
 	if err = exec.Command("gofmt", "-w", newPath).Run(); err != nil {
+		dat, e := os.ReadFile(newPath)
+		if e == nil {
+			println(fmt.Sprintf("Failed to format process.go, dumping %s...\n\n", newPath))
+			_, _ = os.Stdout.Write(dat)
+			println("\n\n")
+		}
 		panic(err)
 	}
-	if err = oldF.Close(); err != nil {
+	var oldFPathAbs string
+	if oldFPathAbs, err = filepath.Abs(oldFPath); err != nil {
 		panic(err)
 	}
-	if err = os.Rename(newPath, oldF.Name()); err != nil {
+	if _, err = os.Stat(filepath.Join(filepath.Dir(oldFPathAbs), "process.go.bak")); errors.Is(err, os.ErrNotExist) {
+		if err = os.Rename(oldFPathAbs, filepath.Join(filepath.Dir(oldFPathAbs), "process.go.bak")); err != nil {
+			panic(err)
+		}
+	}
+	newDat, err := os.ReadFile(newPath)
+	if err != nil {
 		panic(err)
 	}
+	if err = os.WriteFile(oldFPathAbs, newDat, 0644); err != nil {
+		_ = os.Rename(filepath.Join(filepath.Dir(oldFPathAbs), "process.go.old"), oldFPathAbs)
+		panic(err)
+	}
+	_ = os.RemoveAll(filepath.Dir(newPath))
 }
