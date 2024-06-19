@@ -22,7 +22,6 @@ package embedded
 
 import (
 	"github.com/yunginnanet/bine/process"
-	"github.com/yunginnanet/bine/process/embedded/tor-0.4.7"
 )
 
 // NewCreator creates a process.Creator for statically-linked Tor embedded in

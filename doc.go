@@ -12,4 +12,4 @@
 //
 // Users of this library will usually use the high-level tor package. See
 // README at https://github.com/yunginnanet/bine for more info.
-package main
+package bine
