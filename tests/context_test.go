@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cretz/bine/tor"
 	"github.com/stretchr/testify/require"
+	"github.com/yunginnanet/bine/tor"
 )
 
 var torEnabled bool

@@ -7,8 +7,8 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/cretz/bine/torutil/ed25519"
 	"github.com/stretchr/testify/require"
+	"github.com/yunginnanet/bine/torutil/ed25519"
 )
 
 func genRsa(t *testing.T, bits int) *rsa.PrivateKey {

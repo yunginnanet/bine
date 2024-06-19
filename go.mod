@@ -1,4 +1,4 @@
-module github.com/cretz/bine
+module github.com/yunginnanet/bine
 
 go 1.15
 

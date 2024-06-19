@@ -11,5 +11,5 @@
 // * Support for embedded control socket in Tor >= 0.3.5 (non-Windows)
 //
 // Users of this library will usually use the high-level tor package. See
-// README at https://github.com/cretz/bine for more info.
+// README at https://github.com/yunginnanet/bine for more info.
 package main

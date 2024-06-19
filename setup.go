@@ -18,7 +18,7 @@ import (
 
 var skipCompile = false
 
-func main() {
+func init() {
 	flag.BoolVar(&skipCompile, "skip-compile", false, "Skip compiling tor-static")
 	flag.Parse()
 	torStaticPath := os.Getenv("TOR_STATIC_PATH")
@@ -118,7 +118,7 @@ fixProcess:
 		}
 		if inImports && strings.Contains(xerox.Text(), ")") {
 			inImports = false
-			toWrite := `"github.com/cretz/bine/process/embedded/tor-0.4.7"
+			toWrite := `"github.com/yunginnanet/bine/process/embedded/tor-0.4.7"
 			)`
 			// println("Writing(+): " + toWrite)
 			if _, err = newF.WriteString(toWrite); err != nil {

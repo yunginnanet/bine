@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cretz/bine/control"
+	"github.com/yunginnanet/bine/control"
 )
 
 const hsFetchOnion = "2gzyxa5ihm7nsggfxnu52rck2vv4rvmdlkiu3zzui5du4xyclen53wid"

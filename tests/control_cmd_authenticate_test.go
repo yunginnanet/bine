@@ -3,7 +3,7 @@ package tests
 import (
 	"testing"
 
-	"github.com/cretz/bine/tor"
+	"github.com/yunginnanet/bine/tor"
 )
 
 func TestAuthenticateNull(t *testing.T) {

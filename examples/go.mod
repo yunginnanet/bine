@@ -1,12 +1,12 @@
-module github.com/cretz/bine/examples
+module github.com/yunginnanet/bine/examples
 
 go 1.15
 
 require (
-	github.com/cretz/bine v0.2.0
+	github.com/yunginnanet/bine v0.2.0
 	github.com/golang/protobuf v1.5.3
 	golang.org/x/net v0.22.0
 	google.golang.org/grpc v1.38.0
 )
 
-replace github.com/cretz/bine => ../
+replace github.com/yunginnanet/bine => ../

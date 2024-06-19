@@ -1,6 +1,6 @@
 # <img src="logo/bine-logo.png" width="180px">
 
-[![GoDoc](https://godoc.org/github.com/cretz/bine?status.svg)](https://godoc.org/github.com/cretz/bine)
+[![GoDoc](https://godoc.org/github.com/yunginnanet/bine?status.svg)](https://godoc.org/github.com/yunginnanet/bine)
 
 Bine is a Go API for using and controlling Tor. It is similar to [Stem](https://stem.torproject.org/).
 
@@ -12,7 +12,7 @@ Features:
 * Supports v3 onion services
 * Support for embedded control socket in Tor >= 0.3.5 (non-Windows)
 
-See info below, the [API docs](http://godoc.org/github.com/cretz/bine), and the [examples](examples). The project is
+See info below, the [API docs](http://godoc.org/github.com/yunginnanet/bine), and the [examples](examples). The project is
 MIT licensed. The Tor docs/specs and https://github.com/yawning/bulb were great helps when building this.
 
 ## Example
@@ -30,7 +30,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/cretz/bine/tor"
+	"github.com/yunginnanet/bine/tor"
 )
 
 func main() {
@@ -67,9 +67,9 @@ func main() {
 ```
 
 If in `main.go` it can simply be run with `go run main.go`. Of course this uses a separate `tor` process. To embed Tor
-statically in the binary, follow the [embedded package docs](https://godoc.org/github.com/cretz/bine/process/embedded)
+statically in the binary, follow the [embedded package docs](https://godoc.org/github.com/yunginnanet/bine/process/embedded)
 which will require [building Tor statically](https://github.com/cretz/tor-static). Then with
-`github.com/cretz/bine/process/embedded` imported, change the start line above to:
+`github.com/yunginnanet/bine/process/embedded` imported, change the start line above to:
 
 ```go
 t, err := tor.Start(nil, &tor.StartConf{ProcessCreator: embedded.NewCreator()})

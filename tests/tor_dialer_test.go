@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cretz/bine/tor"
+	"github.com/yunginnanet/bine/tor"
 	"golang.org/x/net/context/ctxhttp"
 )
 

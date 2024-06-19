@@ -2,7 +2,8 @@
 //
 // See the following stack overflow post for details on why
 // golang.org/x/crypto/ed25519 can't be used:
-//  https://stackoverflow.com/questions/44810708/ed25519-public-result-is-different
+//
+//	https://stackoverflow.com/questions/44810708/ed25519-public-result-is-different
 package ed25519
 
 import (
@@ -12,7 +13,7 @@ import (
 	"errors"
 	"io"
 
-	"github.com/cretz/bine/torutil/ed25519/internal/edwards25519"
+	"github.com/yunginnanet/bine/torutil/ed25519/internal/edwards25519"
 	"golang.org/x/crypto/ed25519"
 )
 

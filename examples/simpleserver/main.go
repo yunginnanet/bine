@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/cretz/bine/tor"
+	"github.com/yunginnanet/bine/tor"
 )
 
 func main() {

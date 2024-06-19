@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cretz/bine/torutil"
+	"github.com/yunginnanet/bine/torutil"
 )
 
 // EventCode represents an asynchronous event code (ref control spec 4.1).

@@ -9,8 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cretz/bine/tor"
 	"golang.org/x/net/html"
+
+	"github.com/yunginnanet/bine/tor"
 )
 
 func main() {

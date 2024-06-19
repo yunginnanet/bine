@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/cretz/bine/process"
+	"github.com/yunginnanet/bine/process"
 )
 
 /*

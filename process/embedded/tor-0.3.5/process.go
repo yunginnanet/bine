@@ -12,7 +12,7 @@ import (
 	"net"
 	"os"
 
-	"github.com/cretz/bine/process"
+	"github.com/yunginnanet/bine/process"
 )
 
 /*

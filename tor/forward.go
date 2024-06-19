@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/cretz/bine/control"
-	"github.com/cretz/bine/torutil/ed25519"
+	"github.com/yunginnanet/bine/control"
+	"github.com/yunginnanet/bine/torutil/ed25519"
 	othered25519 "golang.org/x/crypto/ed25519"
 )
 
@@ -18,7 +18,7 @@ type OnionForward struct {
 
 	// Key is the private key for this service. It is either the set key, the
 	// generated key, or nil if asked to discard the key. If present, it is an
-	// instance of github.com/cretz/bine/torutil/ed25519.KeyPair.
+	// instance of github.com/yunginnanet/bine/torutil/ed25519.KeyPair.
 	Key crypto.PrivateKey
 
 	// PortForwards defines the ports that will be forwarded to the onion
@@ -37,9 +37,9 @@ type ForwardConf struct {
 
 	// Key is the private key to use. If not present, a key is generated. If
 	// present, it must be an instance of
-	// github.com/cretz/bine/torutil/ed25519.KeyPair, a
+	// github.com/yunginnanet/bine/torutil/ed25519.KeyPair, a
 	// golang.org/x/crypto/ed25519.PrivateKey, or a
-	// github.com/cretz/bine/control.Key.
+	// github.com/yunginnanet/bine/control.Key.
 	Key crypto.PrivateKey
 
 	// ClientAuths is the credential set for clients. The values are

@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/cretz/bine/torutil/ed25519"
+	"github.com/yunginnanet/bine/torutil/ed25519"
 	"golang.org/x/crypto/sha3"
 )
 
@@ -17,7 +17,7 @@ var serviceIDEncoding = base32.StdEncoding.WithPadding(base32.NoPadding)
 
 // OnionServiceIDFromPrivateKey generates the onion service ID from the given
 // private key. This panics if the private key is not a 1024-bit
-// crypto/*rsa.PrivateKey or github.com/cretz/bine/torutil/ed25519.KeyPair.
+// crypto/*rsa.PrivateKey or github.com/yunginnanet/bine/torutil/ed25519.KeyPair.
 func OnionServiceIDFromPrivateKey(key crypto.PrivateKey) string {
 	switch k := key.(type) {
 	case *rsa.PrivateKey:
@@ -30,7 +30,7 @@ func OnionServiceIDFromPrivateKey(key crypto.PrivateKey) string {
 
 // OnionServiceIDFromPublicKey generates the onion service ID from the given
 // public key. This panics if the public key is not a 1024-bit
-// crypto/*rsa.PublicKey or github.com/cretz/bine/torutil/ed25519.PublicKey.
+// crypto/*rsa.PublicKey or github.com/yunginnanet/bine/torutil/ed25519.PublicKey.
 func OnionServiceIDFromPublicKey(key crypto.PublicKey) string {
 	switch k := key.(type) {
 	case *rsa.PublicKey:
