@@ -28,5 +28,5 @@ import (
 // NewCreator creates a process.Creator for statically-linked Tor embedded in
 // the binary.
 func NewCreator() process.Creator {
-	return tor047.NewCreator()
+	return nil
 }
