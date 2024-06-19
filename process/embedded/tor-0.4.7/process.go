@@ -13,13 +13,13 @@ import (
 )
 
 /*
-#cgo CFLAGS: -I${SRCDIR}/../../../../tor-static/tor/src/feature/api
+#cgo CFLAGS: -I${SRCDIR}/../tor-static/tor/src/feature/api
 // The libs below are generated via tor-static's show-libs
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/tor -ltor
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/libevent/dist/lib -levent
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/xz/dist/lib -llzma
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/zlib/dist/lib -lz
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/openssl/dist/lib -lssl -lcrypto
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/tor -ltor
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/libevent/dist/lib -levent
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/xz/dist/lib -llzma
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/zlib/dist/lib -lz
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/_openssl/dist/lib -lssl -lcrypto
 #cgo windows LDFLAGS: -lws2_32 -lcrypt32 -lgdi32 -liphlpapi -lshlwapi -Wl,-Bstatic -lpthread
 #cgo !windows LDFLAGS: -lm
 #include <stdlib.h>

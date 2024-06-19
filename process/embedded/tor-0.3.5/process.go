@@ -1,6 +1,9 @@
 // Package tor035 implements process interfaces for statically linked
 // Tor 0.3.5.x versions. See the process/embedded package for the generic
 // abstraction
+// Package tor035 implements process interfaces for statically linked
+// Tor 0.3.5.x versions. See the process/embedded package for the generic
+// abstraction
 package tor035
 
 import (
@@ -13,18 +16,18 @@ import (
 )
 
 /*
-#cgo CFLAGS: -I${SRCDIR}/../../../../tor-static/tor/src/feature/api
+#cgo CFLAGS: -I${SRCDIR}/../tor-static/tor/src/feature/api
 // The libs below are generated via tor-static's show-libs
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/tor/src/core -ltor-app
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/tor/src/lib -ltor-compress -ltor-evloop -ltor-tls -ltor-crypt-ops -lcurve25519_donna -ltor-geoip -ltor-process -ltor-time -ltor-fs -ltor-encoding -ltor-sandbox -ltor-container -ltor-net -ltor-thread -ltor-memarea -ltor-math -ltor-meminfo -ltor-osinfo -ltor-log -ltor-lock -ltor-fdio -ltor-string -ltor-term -ltor-smartlist-core -ltor-malloc -ltor-wallclock -ltor-err -ltor-intmath -ltor-ctime -ltor-trace
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/tor/src/ext/keccak-tiny -lkeccak-tiny
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/tor/src/ext/ed25519/ref10 -led25519_ref10
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/tor/src/ext/ed25519/donna -led25519_donna
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/tor/src/trunnel -lor-trunnel
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/libevent/dist/lib -levent
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/xz/dist/lib -llzma
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/zlib/dist/lib -lz
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/openssl/dist/lib -lssl -lcrypto
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/tor/src/core -ltor-app
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/tor/src/lib -ltor-compress -ltor-evloop -ltor-tls -ltor-crypt-ops -lcurve25519_donna -ltor-geoip -ltor-process -ltor-time -ltor-fs -ltor-encoding -ltor-sandbox -ltor-container -ltor-net -ltor-thread -ltor-memarea -ltor-math -ltor-meminfo -ltor-osinfo -ltor-log -ltor-lock -ltor-fdio -ltor-string -ltor-term -ltor-smartlist-core -ltor-malloc -ltor-wallclock -ltor-err -ltor-intmath -ltor-ctime -ltor-trace
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/tor/src/ext/keccak-tiny -lkeccak-tiny
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/tor/src/ext/ed25519/ref10 -led25519_ref10
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/tor/src/ext/ed25519/donna -led25519_donna
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/tor/src/trunnel -lor-trunnel
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/libevent/dist/lib -levent
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/xz/dist/lib -llzma
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/zlib/dist/lib -lz
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/openssl/dist/lib -lssl -lcrypto
 #cgo windows LDFLAGS: -lws2_32 -lcrypt32 -lgdi32 -liphlpapi -Wl,-Bstatic -lpthread
 #cgo !windows LDFLAGS: -lm
 
