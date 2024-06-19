@@ -87,15 +87,35 @@ func main() {
 	newF, err := os.OpenFile(newPath, os.O_CREATE|os.O_WRONLY, 0644)
 	xerox := bufio.NewScanner(oldF)
 	doNext := false
+	inImports := false
 	for xerox.Scan() {
 		if xerox.Err() != nil {
 			panic(xerox.Err())
 		}
-		if strings.Contains(xerox.Text(), "NewCreator() process.Creator") {
+		if strings.Contains(xerox.Text(), "import (") {
+			inImports = true
+		}
+		if inImports {
+			if strings.Contains(xerox.Text(), ")") {
+				inImports = false
+				if _, err = newF.WriteString(`"github.com/cretz/bine/process/embedded/tor047"\n)`); err != nil {
+					panic(err)
+				}
+				continue
+			}
+		}
+		needle := "NewCreator() process.Creator"
+		if strings.Contains(xerox.Text(), needle) {
 			doNext = true
 		}
 		if doNext {
-			if _, err = newF.WriteString("	return tor047.NewCreator()\n"); err != nil {
+			if _, err = newF.WriteString(
+				strings.ReplaceAll(
+					xerox.Text(),
+					"return nil",
+					"return tor047.NewCreator()",
+				),
+			); err != nil {
 				panic(err)
 			}
 			_ = xerox.Scan() // ignore the next line
@@ -110,6 +130,9 @@ func main() {
 		panic(err)
 	}
 	if err = newF.Close(); err != nil {
+		panic(err)
+	}
+	if err = exec.Command("gofmt", "-w", newPath).Run(); err != nil {
 		panic(err)
 	}
 	if err = oldF.Close(); err != nil {

@@ -10,3 +10,6 @@ prepStaticTor : .EXPORT
 
 deps :
 	go mod tidy -v
+
+clean :
+	rm -vrf process/embedded/tor-static
