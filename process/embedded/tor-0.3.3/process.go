@@ -12,19 +12,19 @@ import (
 )
 
 /*
-#cgo CFLAGS: -I${SRCDIR}/../../../../tor-static/tor/src/or
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/tor/src/or -ltor
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/tor/src/common -lor -lor-crypto -lcurve25519_donna -lor-ctime -lor-event
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/tor/src/trunnel -lor-trunnel
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/tor/src/ext/keccak-tiny -lkeccak-tiny
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/tor/src/ext/ed25519/ref10 -led25519_ref10
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/tor/src/ext/ed25519/donna -led25519_donna
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/libevent/dist/lib -levent
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/xz/dist/lib -llzma
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/zlib/dist/lib -lz
-#cgo LDFLAGS: -L${SRCDIR}/../../../../tor-static/openssl/dist/lib -lssl -lcrypto
+#cgo CFLAGS: -I${SRCDIR}/../tor-static/tor/src/or
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/tor/src/or -ltor
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/tor/src/common -lor -lor-crypto -lcurve25519_donna -lor-ctime -lor-event
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/tor/src/trunnel -lor-trunnel
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/tor/src/ext/keccak-tiny -lkeccak-tiny
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/tor/src/ext/ed25519/ref10 -led25519_ref10
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/tor/src/ext/ed25519/donna -led25519_donna
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/libevent/dist/lib -levent
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/xz/dist/lib -llzma
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/zlib/dist/lib -lz
+#cgo LDFLAGS: -L${SRCDIR}/../tor-static/openssl/dist/lib -lssl -lcrypto
 #cgo windows LDFLAGS: -lws2_32 -lcrypt32 -lgdi32 -Wl,-Bstatic -lpthread
-#cgo !windows LDFLAGS: -lm
+#cgo !windows LDFLAGS: -lm -lcap -lpthread -ldl -static
 
 #include <stdlib.h>
 #include <tor_api.h>

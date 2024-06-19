@@ -21,7 +21,7 @@ import (
 #cgo LDFLAGS: -L${SRCDIR}/../tor-static/zlib/dist/lib -lz
 #cgo LDFLAGS: -L${SRCDIR}/../tor-static/_openssl/dist/lib -lssl -lcrypto
 #cgo windows LDFLAGS: -lws2_32 -lcrypt32 -lgdi32 -liphlpapi -lshlwapi -Wl,-Bstatic -lpthread
-#cgo !windows LDFLAGS: -lm -lcap -lpthread
+#cgo !windows LDFLAGS: -lm -lcap -lpthread -ldl -static
 #include <stdlib.h>
 #ifdef _WIN32
 	#include <winsock2.h>
