@@ -21,11 +21,6 @@
 package embedded
 
 import (
-	"errors"
-	"fmt"
-	"os"
-	"path/filepath"
-
 	"github.com/cretz/bine/process"
 )
 
@@ -33,23 +28,5 @@ import (
 // the binary.
 func NewCreator() process.Creator {
 	// return tor047.NewCreator()
-	return nil
-}
-
-var ErrPathNotAbsolute = errors.New("path must be absolute")
-
-func Init(torStaticPath string) error {
-	if !filepath.IsAbs(torStaticPath) {
-		return ErrPathNotAbsolute
-	}
-	wd, err := os.Getwd()
-	if err != nil {
-		return fmt.Errorf("failed to get working directory: %w", err)
-	}
-
-	if err = os.Symlink(torStaticPath, filepath.Join(wd, "tor-static")); err != nil {
-		return fmt.Errorf("failed to create symlink to tor-static: %w", err)
-	}
-
 	return nil
 }

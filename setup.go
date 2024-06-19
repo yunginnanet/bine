@@ -9,8 +9,6 @@ import (
 	"strings"
 
 	"github.com/go-git/go-git/v5"
-
-	"github.com/cretz/bine/process/embedded"
 )
 
 func main() {
@@ -76,9 +74,9 @@ func main() {
 			os.Exit(1)
 		}
 	}
-	if err := embedded.Init(torStaticPath); err != nil {
+	/*	if err := embedded.Init(torStaticPath); err != nil {
 		panic(err)
-	}
+	}*/
 	oldF, err := os.OpenFile("process/embedded/process.go", os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		panic(err)
@@ -118,7 +116,6 @@ func main() {
 			); err != nil {
 				panic(err)
 			}
-			_ = xerox.Scan() // ignore the next line
 			doNext = false
 			continue
 		}
